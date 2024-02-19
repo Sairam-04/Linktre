@@ -11,24 +11,23 @@ exports.registerUser = async (req, res, next) => {
             });
         }
         const user = await User.findOne({ username: req.body.username });
-        if (!user) {
+        if (user) {
             return res.status(400).json({
                 success: false,
                 message: "User Already Exists",
             });
         }
         const newUser = new User(req.body);
-        newUser.password = bcrypt.hash(newUser.password, 10);
+        newUser.password = await bcrypt.hash(newUser.password, 10);
         await newUser.save();
         return res.status(201).json({
-            success: false,
-            newUser,
+            success: true,
+            user: newUser
         });
     } catch (error) {
         return res.status(400).json({
             success: false,
-            error: error,
-            message: "User Already Exists",
+            error: error
         });
     }
 };
