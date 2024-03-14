@@ -24,6 +24,12 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: String,
     },
+    resetPasswordToken:{
+        type: String
+    },
+    resetPasswordExpiry:{
+        type: String
+    }
 });
 
 userSchema.methods.generateAuthToken = function () {
