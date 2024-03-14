@@ -5,6 +5,7 @@ const cors = require("cors");
 const connectDB = require("./database/db");
 const userRouter = require("./routes/userRoute");
 const errorMiddleware = require("./middleware/errorMiddleware");
+const linksRouter = require("./routes/linksRoute");
 const app = express();
 
 // Handling uncaught Exception
@@ -20,6 +21,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api", userRouter);
+app.use("/api", linksRouter);
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT || 5000, ()=>{
