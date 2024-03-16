@@ -99,7 +99,54 @@ exports.sendForgotPasswordEmail = async (req, res, next) => {
       message: "Email sent successfully",
     });
   } catch (error) {
-    console.log(error)
     return next(new ErrorHandler(400, "Failed to send Reset Password Email"));
+  }
+};
+
+exports.verifyForgotToken = async (req, res, next) => {
+  try {
+    const { token } = req.params;
+    if (!token) {
+      return next(new ErrorHandler(400, "Verification token is missing"));
+    }
+    const user = await User.findOne({ resetPasswordToken: token });
+    if (!user) {
+      return next(
+        new ErrorHandler(400, "Verification failed, Token not found")
+      );
+    }
+    const currentDate = new Date();
+    const expiryDate = new Date(user.resetPasswordExpiry);
+    if (currentDate >= expiryDate) {
+      return next(new ErrorHandler(400, "Verification failed, Token Expired!"));
+    }
+    return res.status(200).json({
+      success: true,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(400, "Failed to vertify token"));
+  }
+};
+
+exports.createNewPassword = async (req, res, next) => {
+  try {
+    const { token, newPassword } = req.body;
+    if (!token || !newPassword) {
+      return next(new ErrorHandler(400, "Token and newPassword are required"));
+    }
+    const user = await User.findOne({ resetPasswordToken: token });
+    if (!user) {
+      return next(new ErrorHandler(400, "Verification failed, User not found"));
+    }
+    const currentDate = new Date();
+    const expiryDate = new Date(user.resetPasswordExpiry);
+    if (currentDate >= expiryDate) {
+      return next(new ErrorHandler(400, "Verification failed, Token Expired!"));
+    }
+    user.password = await bcrypt.hash(newPassword, 10);
+    await user.save();
+    sendToken(user, 201, res, "Password Reset Successful");
+  } catch (error) {
+    return next(new ErrorHandler(400, "Failed to create new Password"));
   }
 };
