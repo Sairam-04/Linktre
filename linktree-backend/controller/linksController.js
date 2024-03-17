@@ -1,4 +1,5 @@
 const LinksData = require("../models/dataModel");
+const User = require("../models/userModel");
 const ErrorHandler = require("../utils/ErrorHandler");
 
 exports.createLink = async (req, res, next) =>{
@@ -109,11 +110,15 @@ exports.deleteLink = async (req, res, next) =>{
 
 exports.getAllLinks = async (req, res, next) =>{
     try {
-        const user_id = req.user._id;
-        if(!user_id){
+        const {username} = req.params;
+        if(!username){
             return next(new ErrorHandler(400, "User is not Registered"));
         };
-        const data = await LinksData.findOne({"user": user_id});
+        const user = await User.findOne({username: username});
+        if(!user){
+            return next(new ErrorHandler(400, "User is not Registered"));
+        }
+        const data = await LinksData.findOne({"user": user._id});
         if(!data){
             return next(new ErrorHandler(400, "Links not found!!!"));
         }
