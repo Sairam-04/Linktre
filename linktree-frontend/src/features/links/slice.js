@@ -10,6 +10,10 @@ const initialState = {
   newLink : {
     status: "init",
     error: ""
+  },
+  deleteLinkData : {
+    status: "init",
+    error: ""
   }
 };
 
@@ -45,6 +49,22 @@ export const addNewLink = createAsyncThunk(
   }
 );
 
+export const deleteLinkContent = createAsyncThunk(
+  "links/delteLinkContent",
+  async (data, {rejectWithValue, dispatch}) =>{
+    try {
+      const response = await linkService.deleteLink(data.id);
+      dispatch(
+        getAllLinks({
+          username: data.username
+        })
+      );
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.message || error?.message);
+    }
+  }
+)
+
 export const linkSlice = createSlice({
   name: "links",
   initialState,
@@ -78,6 +98,20 @@ export const linkSlice = createSlice({
       .addCase(addNewLink.rejected, (state, action) => {
         state.newLink.status = "rejected";
         state.newLink.error = action.payload;
+      });
+
+    builder
+      .addCase(deleteLinkContent.pending, (state) => {
+        state.deleteLinkData.status = "pending";
+        state.deleteLinkData.error = "";
+      })
+      .addCase(deleteLinkContent.fulfilled, (state) => {
+        state.deleteLinkData.status = "idle";
+        state.deleteLinkData.error = "";
+      })
+      .addCase(deleteLinkContent.rejected, (state, action) => {
+        state.deleteLinkData.status = "rejected";
+        state.deleteLinkData.error = action.payload;
       });
   },
 });
