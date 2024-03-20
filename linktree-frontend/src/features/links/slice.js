@@ -14,6 +14,10 @@ const initialState = {
   deleteLinkData : {
     status: "init",
     error: ""
+  },
+  updateLinkData : {
+    status: "init",
+    error: ""
   }
 };
 
@@ -59,6 +63,24 @@ export const deleteLinkContent = createAsyncThunk(
           username: data.username
         })
       );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.message || error?.message);
+    }
+  }
+)
+
+export const updateLinkContent = createAsyncThunk(
+  "links/updateLinkContent",
+  async ({id, username, ...data}, {rejectWithValue, dispatch}) =>{
+    try {
+      const response = await linkService.updateLink(id, data);
+      dispatch(
+        getAllLinks({
+          username: username
+        })
+      );
+      return response.data;
     } catch (error) {
       return rejectWithValue(error?.response?.data?.message || error?.message);
     }
@@ -112,6 +134,20 @@ export const linkSlice = createSlice({
       .addCase(deleteLinkContent.rejected, (state, action) => {
         state.deleteLinkData.status = "rejected";
         state.deleteLinkData.error = action.payload;
+      });
+
+    builder
+      .addCase(updateLinkContent.pending, (state) => {
+        state.updateLinkData.status = "pending";
+        state.updateLinkData.error = "";
+      })
+      .addCase(updateLinkContent.fulfilled, (state) => {
+        state.updateLinkData.status = "idle";
+        state.updateLinkData.error = "";
+      })
+      .addCase(updateLinkContent.rejected, (state, action) => {
+        state.updateLinkData.status = "rejected";
+        state.updateLinkData.error = action.payload;
       });
   },
 });

@@ -33,10 +33,23 @@ const deleteLink = (id) => {
   });
 };
 
+// Method for Updating a Link
+const updateLink = (id, data) => {
+  const uri = `${BASE_URL}/edit-link/${id}`;
+  return axios.put(uri, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "ltree-token":
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQyZjE5ZGJhNDIyN2NlYWM0MTNmNTIiLCJ1c2VybmFtZSI6InNhaXJhbSIsImVtYWlsIjoic2FpcmFtMTAwQGdtYWlsLmNvbSIsImlhdCI6MTcxMDk1NTc5NiwiZXhwIjoxNzExNTYwNTk2fQ.KWeRLqad0-SzAzP60RfnaXvXycxS4xV05r1CKRvgznU",
+    },
+  });
+};
+
 const result = {
   fetchAllLinks,
   addNewLink,
-  deleteLink
+  deleteLink,
+  updateLink,
 };
 
 export default result;

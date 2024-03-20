@@ -150,3 +150,21 @@ exports.createNewPassword = async (req, res, next) => {
     return next(new ErrorHandler(400, "Failed to create new Password"));
   }
 };
+
+exports.getUserData = async (req, res, next) => {
+  try {
+    const user_id = req.user._id;
+    if (!user_id) {
+      return next(new ErrorHandler(400, "User Not Found"));
+    }
+    const user = await User.findById(user_id);
+    if(!user){
+      return next(new ErrorHandler(400, "User deos not Exists"));
+    }
+    return res.status(200).json({
+      email: user.email, username: user.username
+    })
+  } catch (error) {
+    return next(new ErrorHandler(400, "Failed to fetch User Details"));
+  }
+};

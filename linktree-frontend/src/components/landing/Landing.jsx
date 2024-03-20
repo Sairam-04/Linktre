@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewLink, deleteLinkContent, getAllLinks } from "../../features/links/slice";
+import { addNewLink, deleteLinkContent, getAllLinks, updateLinkContent } from "../../features/links/slice";
 const Landing = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState("");
@@ -9,6 +9,7 @@ const Landing = () => {
   const addLinkStatus = useSelector((state) => state.links.newLink.status);
   const addLinkError = useSelector((state) => state.links.newLink.error);
   const deleteLinkStatus = useSelector((state) => state.links.deleteLinkData.status);
+  const updateLinkStatus = useSelector((state) => state.links.updateLinkData.status);
   useEffect(() => {
     dispatch(
       getAllLinks({
@@ -38,6 +39,16 @@ const Landing = () => {
     }))
   }
 
+  const updateData = () => {
+    dispatch(updateLinkContent({
+      username: "sairam",
+      id: "65f2de9ba0ae8ed5bbff95cb",
+      "visibility": false,
+      "isStarred" : false,
+      "linkTitle" : "Instagram"
+    }))
+  }
+
   return <div>
     
     {status === "pending" ? <>Loading ...</> :  allLinks.map((ele, ind)=> (
@@ -59,6 +70,17 @@ const Landing = () => {
     >
         {
             deleteLinkStatus === "pending" ? "Loading ...." : "Delete Link"
+        }
+    </button>
+
+    <br /><br /><br />
+
+    
+    <button onClick={()=> updateData()}
+        disabled = {updateLinkStatus === "pending"}
+    >
+        {
+            updateLinkStatus === "pending" ? "Loading ...." : "Update Link"
         }
     </button>
 
