@@ -5,10 +5,10 @@ import { loginUser } from "../../features/user/slice";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.users.loginData.status);
-//   const data = useSelector((state) => state.users.loginData.data);
+  const data = useSelector((state) => state.users.loginData.data);
   const login = () =>{
     dispatch(loginUser({
-        username: "sairam100@gmail.com",
+      username: "sairam100@gmail.com",
         password: "sairam123"
     }))
   }
@@ -20,7 +20,7 @@ const LoginPage = () => {
         disabled = {status === "pending"}
     >
         {
-            status === "pending" ? "Loading ...." : "Delete Link"
+            status === "pending" ? "Loading ...." : "Login"
         }
     </button>
   </div>;

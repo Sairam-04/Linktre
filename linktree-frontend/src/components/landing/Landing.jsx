@@ -52,7 +52,7 @@ const Landing = () => {
   return <div>
     
     {status === "pending" ? <>Loading ...</> :  allLinks.map((ele, ind)=> (
-      <div key={ind}>{ele.linkTitle}</div>
+      <div className="text-center" key={ind}>{ele.linkTitle}</div>
     ))}
     <hr /><br />
     <button onClick={()=> addLink()}

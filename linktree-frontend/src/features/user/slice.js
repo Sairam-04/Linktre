@@ -36,7 +36,7 @@ export const userSlice = createSlice({
                 state.loginData.error = "";
                 state.loginData.data = action.payload || []
             })
-            .addCase(loginUser.pending, (state, action) =>{
+            .addCase(loginUser.rejected, (state, action) =>{
                 state.loginData.status = "rejected",
                 state.loginData.error = action.payload;
                 state.loginData.data = [];

@@ -32,20 +32,12 @@ const RegisterUser = (data) =>{
 
 const LoginUser = (data) =>{
     const uri=`${BASE_URL}/login`;
-    return axios.post(uri, data, {
-        headers: {
-            "Content-Type": "application.json",
-        }
-    });
+    return axios.post(uri, data);
 };
 
 const sendEmailPassword = (data) =>{
     const uri=`${BASE_URL}/send-password-reset-email`;
-    return axios.post(uri, data, {
-        headers: {
-            "Content-Type": "application.json",
-        }
-    });
+    return axios.post(uri, data);
 }
 
 const VerifyResetToken = (token) =>{
