@@ -28,16 +28,16 @@ const Header = () => {
         </Link>
       </div>
       <ul className="navmenu w-1/2 sm:flex md:text-lg gap-10 justify-end hidden text-md">
-        <li className="cursor-pointer hover:text-[#9bff9e]">
+        <li className="navitem">
           <Link to="/">Home</Link>
         </li>
-        <li className="cursor-pointer hover:text-[#9bff9e]">
+        <li className="navitem">
           <Link to="/features">Features</Link>
         </li>
-        <li className="cursor-pointer hover:text-[#9bff9e]">
+        <li className="navitem">
           <Link to="/about">About</Link>
         </li>
-        <li className="cursor-pointer hover:text-[#9bff9e]">
+        <li className="navitem">
           <Link to="/faq">FAQ </Link>
         </li>
       </ul>

@@ -14,7 +14,6 @@ const RegisterPage = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
   const status = useSelector((state) => state.users.registerData.status);
   const error_data = useSelector((state) => state.users.registerData.error);
   const data = useSelector((state) => state.users.registerData.data);
@@ -45,29 +44,26 @@ const RegisterPage = () => {
     } else if (values.password.length < 6) {
       errors.password = "Password length should be more than 6 characters";
     }
-
     return errors;
   };
 
   const submitSignup = (e) => {
     e.preventDefault();
-    setErrors(validateForm(signupData));
-    setIsSubmit(true);
+    const errors = validateForm(signupData);
+    setErrors(errors)
+    if(!Object.keys(errors).length){
+      dispatch(registerUser(signupData));
+    }
   };
 
   useEffect(() => {
-    if (isSubmit && Object.keys(errors).length === 0) {
-      dispatch(registerUser(signupData));
-      setIsSubmit(false);
-
-    }
     if (status === "idle" && data && data.success) {
       setUser(data.token);
     }
     if (error_data && error_data === "Network Error") {
       console.log("500");
     }
-  }, [isSubmit, errors, status, data, error_data]);
+  }, [status, data, error_data]);
 
   return (
     <div className="w-full h-full flex">
@@ -138,7 +134,7 @@ const RegisterPage = () => {
           <div>
             <button
               type="submit"
-              disabled={status === "pending" && isSubmit}
+              disabled={status === "pending"}
               className="bg-[#4d8552] text-white px-5 py-2 text-lg rounded-2xl hover:scale-105 hover:drop-shadow-2xl box-shadow-slate-400 shadow-relative z-index:1"
             >
               Register

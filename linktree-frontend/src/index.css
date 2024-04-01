@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navitem{
+    @apply cursor-pointer hover:text-[#9bff9e];
+}
