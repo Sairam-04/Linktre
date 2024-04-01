@@ -23,11 +23,7 @@ const fetchUserDetails = (data) =>{
 
 const RegisterUser = (data) =>{
     const uri = `${BASE_URL}/register`;
-    return axios.post(uri, data, {
-        headers: {
-            "Content-Type": "application.json",
-        }
-    });
+    return axios.post(uri, data);
 }
 
 const LoginUser = (data) =>{

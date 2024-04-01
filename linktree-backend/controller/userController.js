@@ -13,6 +13,7 @@ const { sendEmail } = require("../utils/sendEmail");
 exports.registerUser = async (req, res, next) => {
   try {
     const body = req.body;
+    console.log(body)
     if (!body) {
       return next(new ErrorHandler(400, "Data sent is not valid"));
     }
@@ -20,11 +21,12 @@ exports.registerUser = async (req, res, next) => {
     if (user) {
       return next(new ErrorHandler(400, "User Already Exists"));
     }
-    const newUser = new User(req.body);
+    const newUser = new User(body);
     newUser.password = await bcrypt.hash(newUser.password, 10);
     await newUser.save();
     sendToken(newUser, 201, res, "Registered Successfully");
   } catch (error) {
+    console.log(error)
     return next(new ErrorHandler(500, error.message));
   }
 };
