@@ -2,9 +2,33 @@ import React, { useState, useEffect } from "react";
 import Logo from "../../assets/Logo.png";
 import smallLogo from "../../assets/Logo-small.png";
 import { Link } from "react-router-dom";
+import { getUser } from "../../utils/localStorage";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../../features/user/slice";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Adjust default value
+  const token = getUser();
+  const userData = useSelector((state) => state.users.fetchUserData.data);
+  const status = useSelector((state) => state.users.fetchUserData.status);
+  const error_data = useSelector((state) => state.users.fetchUserData.error);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchUser(token));
+    }
+  }, [token, dispatch]);
+
+  useEffect(() => {
+    if (status === "idle" && userData) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [status, userData]);
+
   const displayMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -28,26 +52,54 @@ const Header = () => {
         </Link>
       </div>
       <ul className="navmenu w-1/2 sm:flex md:text-lg gap-10 justify-end hidden text-md">
-        <li className="navitem">
-          <Link to="/">Home</Link>
-        </li>
-        <li className="navitem">
-          <Link to="/features">Features</Link>
-        </li>
-        <li className="navitem">
-          <Link to="/about">About</Link>
-        </li>
-        <li className="navitem">
-          <Link to="/faq">FAQ </Link>
-        </li>
+        {!isLoggedIn ? (
+          <>
+            <li className="navitem">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="navitem">
+              <Link to="/features">Features</Link>
+            </li>
+            <li className="navitem">
+              <Link to="/about">About</Link>
+            </li>
+            <li className="navitem">
+              <Link to="/faq">FAQ </Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="navitem">
+              <Link to="/all-links">Links</Link>
+            </li>
+            <li className="navitem">
+              <Link to="/faq">Apperance </Link>
+            </li>
+            <li className="navitem">
+              <Link to="/faq">Settings </Link>
+            </li>
+          </>
+        )}
       </ul>
       <ul className="navmenu w-1/2 sm:flex md:text-lg gap-4 justify-end hidden text-md">
-        <li className="cursor-pointer hover:text-[#9bff9e] hover:scale-105 border-[0.1px] border-[#d8ffda] font-extralight px-5 py-1 rounded-3xl">
-          <Link to="/register/login">Login</Link>
-        </li>
-        <li className="cursor-pointer hover:text-[#9bff9e] hover:scale-105 border-[0.1px] border-[#d0ffd2] font-extralight px-5 py-1 rounded-3xl">
-          <Link to="/register">SignUp</Link>
-        </li>
+        {!isLoggedIn ? (
+          <>
+            <li className="cursor-pointer hover:text-[#9bff9e] hover:scale-105 border-[0.1px] border-[#d8ffda] font-extralight px-5 py-1 rounded-3xl">
+              <Link to="/register/login">Login</Link>
+            </li>
+            <li className="cursor-pointer hover:text-[#9bff9e] hover:scale-105 border-[0.1px] border-[#d0ffd2] font-extralight px-5 py-1 rounded-3xl">
+              <Link to="/register">SignUp</Link>
+            </li>
+          </>
+        ) : (
+          <>
+            {status === "idle" ? (
+              <div>{userData.username[0]}</div>
+            ) : (
+              <div>dkfmdkf</div>
+            )}
+          </>
+        )}
       </ul>
       <div className="block sm:hidden" onClick={() => displayMenu()}>
         <i className="bi bi-list text-2xl"></i>
