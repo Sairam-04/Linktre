@@ -7,8 +7,15 @@
 }
 
 ::-webkit-scrollbar {
-    width: 0;
+    width: 8px;
+    border-radius: 16px;
     /* Remove scrollbar space */
-    background: transparent;
+    background: rgb(182, 182, 182);
     /* Optional: just make scrollbar invisible */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    width: 8px;
+    border-radius: 16px;
+    background: rgb(118, 118, 118);
   }
