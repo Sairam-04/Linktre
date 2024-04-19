@@ -5,3 +5,10 @@
 .navitem{
     @apply cursor-pointer hover:text-[#9bff9e];
 }
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+  }

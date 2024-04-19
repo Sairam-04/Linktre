@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../utils/localStorage";
+import AllLinksComponent from "./AllLinksComponent";
 
 const LinksPage = () => {
   return (
     <div className="w-full h-[91vh] flex px-4 py-1">
-      <div className="w-3/5 h-full py-3 px-2 flex flex-col items-center pt-8 gap-8">
+      <div className="w-3/5 h-full overflow-y-auto py-3 px-2 flex flex-col items-center pt-8 gap-8">
         <div className="w-full bg-[#e5ffde] text-black flex justify-between items-center text-md p-2 mb-3 rounded-3xl">
             <span className="font-semibold">Your ConnectVerse is live :
                 <span className="font-light"> http://kfdfkd:123lgd</span>
@@ -26,9 +27,11 @@ const LinksPage = () => {
           </span>
           <span>Add Link</span>
         </button>
-        
+        <AllLinksComponent />
       </div>
-      <div className="w-2/5 h-full border-l-[1px] border-green-100"></div>
+      <div className="w-2/5 h-full border-l-[1px] border-green-100">
+
+      </div>
     </div>
   );
 };
