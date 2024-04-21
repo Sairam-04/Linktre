@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewLink, deleteLinkContent, getAllLinks, updateLinkContent } from "../../features/links/slice";
+import Header from "../homepage/Header";
 const Landing = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState("");
@@ -50,7 +51,7 @@ const Landing = () => {
   }
 
   return <div>
-    
+    <Header />
     {status === "pending" ? <>Loading ...</> :  allLinks.map((ele, ind)=> (
       <div className="text-center" key={ind}>{ele.linkTitle}</div>
     ))}

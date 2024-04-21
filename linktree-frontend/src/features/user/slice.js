@@ -12,6 +12,11 @@ const initialState = {
     error: "",
     data: [],
   },
+  fetchUserData:{
+    status: "init",
+    error: "",
+    data: []
+  }
 };
 
 export const loginUser = createAsyncThunk(
@@ -37,6 +42,18 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+
+export const fetchUser = createAsyncThunk(
+  "users/fetchUser",
+  async (data, {rejectWithValue}) =>{
+    try {
+      const response = await userService.fetchUserDetails(data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.message || error?.message);
+    }
+  }
+)
 
 export const userSlice = createSlice({
   name: "users",
@@ -74,6 +91,22 @@ export const userSlice = createSlice({
         state.registerData.error = action.payload;
         state.registerData.data = [];
       });
+
+    builder
+    .addCase(fetchUser.pending, (state) => {
+      state.fetchUserData.status = "pending";
+      state.fetchUserData.error = "";
+    })
+    .addCase(fetchUser.fulfilled, (state, action) => {
+      state.fetchUserData.status = "idle";
+      state.fetchUserData.data = action.payload || [];
+      state.fetchUserData.error = "";
+    })
+    .addCase(fetchUser.rejected, (state, action) => {
+      state.fetchUserData.status = "rejected";
+      state.fetchUserData.error = action.payload;
+      state.fetchUserData.data = [];
+    });
   },
 });
 

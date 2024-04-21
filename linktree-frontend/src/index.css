@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navitem{
+    @apply cursor-pointer hover:text-[#9bff9e];
+}
+
+.input-field{
+  @apply bg-gray-600 border text-base text-white border-gray-300 rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5 placeholder:text-gray-200 placeholder:font-light;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 16px;
+    /* Remove scrollbar space */
+    background: rgb(182, 182, 182);
+    /* Optional: just make scrollbar invisible */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    width: 8px;
+    border-radius: 16px;
+    background: rgb(118, 118, 118);
+  }

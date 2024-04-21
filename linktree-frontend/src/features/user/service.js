@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUser } from "../../utils/localStorage";
 const BASE_URL = import.meta.env.VITE_BACKEND_SERVER_URI;
 
 const ResetPassword = (data) =>{
@@ -16,7 +17,7 @@ const fetchUserDetails = (data) =>{
     return axios.get(uri,{
         headers: {
             "Content-Type": "application.json",
-            "ltree-token" : ""
+            "ltree-token" : data
         }
     })
 }

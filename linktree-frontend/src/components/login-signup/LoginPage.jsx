@@ -41,17 +41,17 @@ const LoginPage = () => {
     }
     return errors;
   };
+
   const login = (e) => {
     e.preventDefault();
-    setErrors(validateForm(loginData));
-    setIsSubmit(true);
+    const errors = validateForm(loginData);
+    setErrors(errors);
+    if(!Object.keys(errors).length){
+      dispatch(loginUser(loginData));
+    }
   };
 
   useEffect(() => {
-    if (isSubmit && Object.keys(errors).length === 0) {
-      dispatch(loginUser(loginData));
-      setIsSubmit(false);
-    }
     if (status === "idle" && data && data.success) {
       setUser(data.token);
       navigate("/landing");
@@ -59,7 +59,7 @@ const LoginPage = () => {
     if (error_data && error_data === "Network Error") {
       console.log("500");
     }
-  }, [isSubmit, errors, status, data, error_data]);
+  }, [status, data, error_data]);
 
   return (
     <div className="w-full h-full flex">
@@ -115,7 +115,7 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={status === "pending"}
-              className="bg-[#4d8552] text-white px-5 py-2 text-lg rounded-2xl hover:scale-105 hover:drop-shadow-2xl box-shadow-slate-400 shadow-relative z-index:1"
+              className="bg-[#4d8552] text-white px-5 py-2 text-lg rounded-2xl hover:scale-105 hover:drop-shadow-2xl box-shadow-slate-400 shadow-relative z-index:1 disabled:bg-slate-400"
             >
               Login
             </button>
