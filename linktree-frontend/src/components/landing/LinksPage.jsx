@@ -19,7 +19,7 @@ const LinksPage = () => {
           </span>
           <span className="flex gap-2 items-center">
             Share your links to your socials
-            <button className="bg-[#b6b6b6] text-black px-2 py-1 text-md rounded-full shadow-inner">
+            <button className="bg-[#b6b6b6] cursor-copy text-black px-2 py-1 text-md rounded-full shadow-inner">
               {" "}
               Copy Here
             </button>
