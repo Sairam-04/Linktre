@@ -12,7 +12,7 @@ const LinksPage = () => {
     <>
       <div className={`w-full relative h-[91vh] flex px-4 py-1 ${addLinkClick ? "blur-sm" : ""}`}>
       <div className="w-3/5 h-full overflow-y-auto py-3 px-2 flex flex-col items-center pt-8 gap-8">
-        <div className="w-full bg-[#e5ffde] text-black flex justify-between items-center text-md p-2 mb-3 rounded-3xl">
+        <div className="w-full bg-[#2e2f2e] text-white flex justify-between items-center text-md p-2 mb-3 rounded-3xl">
           <span className="font-semibold">
             Your ConnectVerse is live :
             <span className="font-light"> http://kfdfkd:123lgd</span>
@@ -26,7 +26,7 @@ const LinksPage = () => {
           </span>
         </div>
         <button
-          className="flex bg-green-500 w-[60%] py-2 text-white text-lg gap-3 items-center justify-center
+          className="flex bg-[#3c7d54] w-[60%] py-2 text-white text-lg gap-3 items-center justify-center
             rounded-2xl"
             onClick={onCreateLinkClick}
         >

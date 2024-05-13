@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getUser } from "../../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../features/user/slice";
+import Switch from "./SwitchTheme";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -81,7 +82,8 @@ const Header = () => {
           </>
         )}
       </ul>
-      <ul className="navmenu w-1/2 sm:flex md:text-lg gap-4 justify-end hidden text-md">
+      <ul className="navmenu w-1/2 sm:flex md:text-lg gap-4 justify-end items-center hidden text-md">
+        <Switch />
         {!isLoggedIn ? (
           <>
             <li className="cursor-pointer hover:text-[#9bff9e] hover:scale-105 border-[0.1px] border-[#d8ffda] font-extralight px-5 py-1 rounded-3xl">
@@ -94,7 +96,7 @@ const Header = () => {
         ) : (
           <>
             {status === "idle" ? (
-              <div>{userData.username[0]}</div>
+              <div className="w-[35px] h-[35px] rounded-full bg-white text-black flex justify-center items-center text-3xl">{userData.username[0]}</div>
             ) : (
               <div>dkfmdkf</div>
             )}

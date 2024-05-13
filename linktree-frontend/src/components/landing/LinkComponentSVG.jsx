@@ -3,7 +3,6 @@ const VerticalDotsSVG = () => {
     <div className="w-[8%] rounded-tl-xl rounded-bl-xl flex items-center cursor-move">
       <div
         className="flex items-center justify-center border-[#d7dce1] w-8 h-auto"
-        tabindex="0"
         aria-describedby="rbd-hidden-text-0-hidden-text-0"
         data-rbd-drag-handle-draggable-id="327990947"
         data-rbd-drag-handle-context-id="0"
@@ -15,7 +14,7 @@ const VerticalDotsSVG = () => {
           viewBox="0 0 16 16"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          class=" "
+          className=""
           role="img"
           aria-hidden="false"
           aria-labelledby="ltclid27_title "
