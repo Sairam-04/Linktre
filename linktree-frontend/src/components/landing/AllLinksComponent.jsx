@@ -12,8 +12,9 @@ const AllLinksComponent = () => {
   const userData = useSelector((state) => state.users.fetchUserData.data)
   
   useEffect(()=>{
+    if(userData && userData?.username)
     dispatch(getAllLinks({username:userData?.username}));
-  }, [])
+  }, [userData])
   return (
     <div className='w-full h-screen overflow-y-auto flex flex-col gap-5 items-center'>
       {
@@ -27,4 +28,4 @@ const AllLinksComponent = () => {
   )
 }
 
-export default AllLinksComponent
+export default AllLinksComponent;
