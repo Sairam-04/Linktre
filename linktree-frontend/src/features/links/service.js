@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getUser } from "../../utils/localStorage";
-const BASE_URL = import.meta.env.VITE_BACKEND_SERVER_URI;
+import { BACKEND_URL } from "../../constants/urls";
+const BASE_URL = BACKEND_URL;
 
 const ALL_LINKS_URL = (username) => `get-all-links/${username}`;
 
