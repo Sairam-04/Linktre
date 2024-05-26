@@ -13,6 +13,7 @@ import LinksPage from "./components/landing/LinksPage";
 import { getUser } from "./utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./features/user/slice";
+import UserTreePage from "./components/treepage/UserTreePage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Adjust default value
@@ -56,6 +57,7 @@ function App() {
           <Route path="/register/signup" element={<RegisterPage />}></Route>
           <Route path="/register/login" element={<LoginPage />}></Route>
         </Route>
+        <Route path="/socials/:username" element={<UserTreePage />}></Route>
 
         <Route path="/landing" element={<Landing />}></Route>
       </Routes>

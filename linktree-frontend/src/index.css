@@ -10,6 +10,20 @@
   @apply bg-gray-600 border text-base text-white border-gray-300 rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5 placeholder:text-gray-200 placeholder:font-light;
 }
 
+.mobileview__box{
+  @apply flex justify-between py-2 w-full px-1 dark:bg-[#2e2f2e] rounded-lg items-center;
+}
+.mobileview__box__icon{
+  @apply rounded-full hover:bg-[#ffffff1a] hover:opacity-100 flex items-center py-1 px-2 cursor-pointer;
+}
+
+.mobileview__box__user{
+  @apply flex justify-between py-4 text-xl w-[50%] px-1 bg-[#2e2f2e] rounded-lg items-center;
+}
+.mobileview__box__icon__user{
+  @apply rounded-full hover:bg-[#ffffff1a] hover:opacity-100 flex items-center py-1 px-2 cursor-pointer;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     border-radius: 16px;
