@@ -11,14 +11,14 @@
 }
 
 .mobileview__box{
-  @apply flex justify-between py-2 w-full px-1 dark:bg-[#2e2f2e] rounded-lg items-center;
+  @apply flex justify-between py-2 w-full px-1 dark:bg-[#2e2f2e] rounded-lg items-center hover:opacity-65;
 }
 .mobileview__box__icon{
   @apply rounded-full hover:bg-[#ffffff1a] hover:opacity-100 flex items-center py-1 px-2 cursor-pointer;
 }
 
 .mobileview__box__user{
-  @apply flex justify-between py-4 text-xl w-[50%] px-1 bg-[#2e2f2e] rounded-lg items-center;
+  @apply flex justify-between py-4 text-xl w-[50%] px-1 bg-[#2e2f2e] rounded-lg items-center hover:scale-110;
 }
 .mobileview__box__icon__user{
   @apply rounded-full hover:bg-[#ffffff1a] hover:opacity-100 flex items-center py-1 px-2 cursor-pointer;
