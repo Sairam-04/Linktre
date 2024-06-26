@@ -5,7 +5,6 @@ import { getAllLinks } from "../../features/links/slice";
 
 const UserTreePage = () => {
   const { username } = useParams();
-  console.log(username);
   const dispatch = useDispatch();
   const allLinksData = useSelector((state) => state.links.links.data);
   const status = useSelector((state) => state.links.links.status);

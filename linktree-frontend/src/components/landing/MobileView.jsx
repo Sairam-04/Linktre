@@ -8,7 +8,6 @@ const MobileView = () => {
   const err = useSelector((state) => state.links.links.error);
   const userData = useSelector((state) => state.users.fetchUserData.data);
   const userStatus = useSelector((state) => state.users.fetchUserData.status);
-  console.log(window.location.port, window.location.hostname, window.location.protocol)
   return (
     <div className="border-4 h-[90%] dark:bg-gradient-to-b from-black via-stone-800 to-gray-900 w-[70%] rounded-3xl py-8 flex flex-col gap-5 items-center">
       <div className="userdetails flex flex-col gap-2">
@@ -21,7 +20,7 @@ const MobileView = () => {
       </div>
       <div className="flex flex-col w-[90%] justify-center gap-5 overflow-auto">
         {linkStatus === "idle" ? (
-          allLinksData.map((ele, ind) => (
+          allLinksData.filter(ele => ele.visibility === true).map((ele, ind) => (
             <a className="mobileview__box" href={ele.linkUrl} target="_blank">
               <div></div>
               <div className="">{ele.linkTitle}</div>

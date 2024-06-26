@@ -61,21 +61,11 @@ const CreateLink = ({ onCreateLinkClick }) => {
   }, [addLinkStatus]);
 
   return (
-    <div
-      className="absolute text-white overflow-hidden w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[50vh] max-h-fit z-[50] bg-[#2d312b] rounded-xl drop-shadow-[0_35px_35px_rgba(0,0,0,2)]"
-      onSubmit={submitLink}
-    >
-      <div className="flex justify-between items-center px-2 pl-10">
-        <div className="text-xl">Add New Link</div>
-        <div
-          className="cursor-pointer hover:text-red-500"
-          onClick={() => onCreateLinkClick()}
-        >
-          <i className="bi bi-x text-4xl"></i>
-        </div>
-      </div>
-      <div className="h-[1.75px] bg-white mx-4 mt-1 mb-2 rounded-lg"></div>
-      <div className="inputfields flex flex-col gap-5 px-5 py-2">
+    <>
+      <div
+        className="inputfields flex flex-col gap-5 px-5 py-2"
+        onSubmit={submitLink}
+      >
         <div className="flex flex-col gap-2">
           <label htmlFor="linkTitle">Title</label>
           <input
@@ -143,7 +133,7 @@ const CreateLink = ({ onCreateLinkClick }) => {
           {"  "}Submit
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

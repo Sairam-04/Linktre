@@ -5,6 +5,9 @@ import CreateLink from "./CreateLink";
 import MobileView from "./MobileView";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Popup from "../utilities/PopUpComponent";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LinksPage = () => {
   const [addLinkClick, setAddLinkClick] = useState(false);
@@ -18,7 +21,8 @@ const LinksPage = () => {
   useEffect(() => {
     if (userData && userData?.username) {
       setCopyUrl(
-        `${window.location.protocol}//${window.location.hostname}:${window.location.port}/socials/${userData?.username}`   );
+        `${window.location.protocol}//${window.location.hostname}:${window.location.port}/socials/${userData?.username}`
+      );
     }
   }, [userData]);
   const copyText = async () => {
@@ -80,7 +84,16 @@ const LinksPage = () => {
           <MobileView />
         </div>
       </div>
-      {addLinkClick && <CreateLink onCreateLinkClick={onCreateLinkClick} />}
+      {addLinkClick && (
+        <Popup
+          heading={"Add New Link"}
+          isOpen={addLinkClick}
+          onClose={onCreateLinkClick}
+        >
+          <CreateLink onCreateLinkClick={onCreateLinkClick} />
+        </Popup>
+      )}
+      <ToastContainer />
     </>
   );
 };

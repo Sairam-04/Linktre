@@ -17,7 +17,7 @@ const addNewLink = (data) => {
   return axios.post(uri, data, {
     headers: {
       "Content-Type": "application/json",
-      "ltree-token": getUser()   
+      "ltree-token": getUser(),
     },
   });
 };
@@ -28,8 +28,7 @@ const deleteLink = (id) => {
   return axios.delete(uri, {
     headers: {
       "Content-Type": "application/json",
-      "ltree-token":
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQyZjE5ZGJhNDIyN2NlYWM0MTNmNTIiLCJ1c2VybmFtZSI6InNhaXJhbSIsImVtYWlsIjoic2FpcmFtMTAwQGdtYWlsLmNvbSIsImlhdCI6MTcxMDc4MDIwOSwiZXhwIjoxNzExMzg1MDA5fQ.0K7V7rLTyV6BQqpQunZ_tOK0uw_2xW2gdVWKUAFAO2M",
+      "ltree-token": getUser(),
     },
   });
 };
@@ -40,8 +39,7 @@ const updateLink = (id, data) => {
   return axios.put(uri, data, {
     headers: {
       "Content-Type": "application/json",
-      "ltree-token":
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQyZjE5ZGJhNDIyN2NlYWM0MTNmNTIiLCJ1c2VybmFtZSI6InNhaXJhbSIsImVtYWlsIjoic2FpcmFtMTAwQGdtYWlsLmNvbSIsImlhdCI6MTcxMDk1NTc5NiwiZXhwIjoxNzExNTYwNTk2fQ.KWeRLqad0-SzAzP60RfnaXvXycxS4xV05r1CKRvgznU",
+      "ltree-token": getUser(),
     },
   });
 };
