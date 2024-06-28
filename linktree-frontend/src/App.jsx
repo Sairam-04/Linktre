@@ -32,7 +32,6 @@ function App() {
   useEffect(() => {
     if (status === "idle" && userData) {
       setIsLoggedIn(true);
-      console.log("=====?")
     } else {
       setIsLoggedIn(false);
     }

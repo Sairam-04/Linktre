@@ -21,7 +21,7 @@ const MobileView = () => {
       <div className="flex flex-col w-[90%] justify-center gap-5 overflow-auto">
         {linkStatus === "idle" ? (
           allLinksData.filter(ele => ele.visibility === true).map((ele, ind) => (
-            <a className="mobileview__box" href={ele.linkUrl} target="_blank">
+            <a className="mobileview__box" href={ele.linkUrl} target="_blank" key={ind}>
               <div></div>
               <div className="">{ele.linkTitle}</div>
               <div className="mobileview__box__icon">

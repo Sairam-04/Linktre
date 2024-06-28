@@ -10,7 +10,7 @@ const removeUser = () =>{
     localStorage.removeItem("ltree-token");
 }
 
-const setTheme = (theme) => localStorage.setItem("ltree-theme", theme);
+const setTheme = (theme) => localStorage.setItem("ltree-theme", "dark");
 const getTheme = () => localStorage.getItem("ltree-theme")
 
 export {setUser, getUser, removeUser, setTheme, getTheme};

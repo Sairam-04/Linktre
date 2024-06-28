@@ -22,15 +22,15 @@ const UserTreePage = () => {
       </div>
       <div className="flex flex-col w-[90%] justify-center gap-5 overflow-auto items-center">
         {status === "idle"
-          ? allLinksData.map((ele, ind) => (
-              <a className="mobileview__box__user" href={ele.linkUrl} target="_blank">
-                <div></div>
-                <div className="text-white">{ele.linkTitle}</div>
-                <div className="mobileview__box__icon__user">
-                  <i className="bi bi-three-dots"></i>
-                </div>
-              </a>
-            ))
+          ? allLinksData.filter((element)=> element.visibility === true).map((ele, ind) => (
+            <a className="mobileview__box__user" href={ele.linkUrl} target="_blank" key={ind}>
+              <div></div>
+              <div className="text-white">{ele.linkTitle}</div>
+              <div className="mobileview__box__icon__user">
+                <i className="bi bi-three-dots"></i>
+              </div>
+            </a>
+          ))
           : null}
       </div>
     </div>

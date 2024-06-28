@@ -6,7 +6,6 @@ import DeleteLink from "./DeleteLink";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLinkContent } from "../../features/links/slice";
 import { toast, Slide } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 
 const LinkComponent = ({ linkData }) => {
