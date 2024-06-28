@@ -54,7 +54,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (status === "idle" && data && data.success) {
       setUser(data.token);
-      navigate("/landing");
+      navigate("/all-links");
     }
     if (error_data && error_data === "Network Error") {
       console.log("500");

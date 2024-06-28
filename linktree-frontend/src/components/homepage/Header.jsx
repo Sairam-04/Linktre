@@ -59,13 +59,13 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li className="navitem">
-              <Link to="/features">Features</Link>
+              <Link to="/">Features</Link>
             </li>
             <li className="navitem">
-              <Link to="/about">About</Link>
+              <Link to="/">About</Link>
             </li>
             <li className="navitem">
-              <Link to="/faq">FAQ </Link>
+              <Link to="/">FAQ </Link>
             </li>
           </>
         ) : (
@@ -74,10 +74,10 @@ const Header = () => {
               <Link to="/all-links">Links</Link>
             </li>
             <li className="navitem">
-              <Link to="/faq">Apperance </Link>
+              <Link to="/all-links">Apperance </Link>
             </li>
             <li className="navitem">
-              <Link to="/faq">Settings </Link>
+              <Link to="/all-links">Settings </Link>
             </li>
           </>
         )}

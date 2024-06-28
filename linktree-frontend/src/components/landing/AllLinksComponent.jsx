@@ -3,6 +3,7 @@ import LinkComponent from './LinkComponent'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllLinks } from '../../features/links/slice';
 import Loader from '../loaders/Loader';
+import { ToastContainer } from 'react-toastify';
 
 const AllLinksComponent = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,8 @@ const AllLinksComponent = () => {
     dispatch(getAllLinks({username:userData?.username}));
   }, [userData])
   return (
-    <div className='w-full h-screen overflow-y-auto flex flex-col gap-5 items-center'>
+    <>
+      <div className='w-full h-screen overflow-y-auto flex flex-col gap-5 items-center'>
       {
         status === "pending" ? <Loader /> : (
           allLinksData.map((ele, ind) =>(
@@ -25,6 +27,8 @@ const AllLinksComponent = () => {
         )
       }
     </div>
+    <ToastContainer />
+    </>
   )
 }
 

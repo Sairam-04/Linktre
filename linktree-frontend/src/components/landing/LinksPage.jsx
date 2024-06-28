@@ -93,7 +93,6 @@ const LinksPage = () => {
           <CreateLink onCreateLinkClick={onCreateLinkClick} />
         </Popup>
       )}
-      <ToastContainer />
     </>
   );
 };
