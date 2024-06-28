@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import linkService from "./service";
+import { toast } from "react-toastify";
+
 
 const initialState = {
   links: {
@@ -114,6 +116,17 @@ export const linkSlice = createSlice({
         state.newLink.error = "";
       })
       .addCase(addNewLink.fulfilled, (state) => {
+        console.log(state)
+        toast.success(`Created link:`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         state.newLink.status = "idle";
         state.links.error = "";
       })

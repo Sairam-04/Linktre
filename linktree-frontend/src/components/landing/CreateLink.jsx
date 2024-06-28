@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewLink } from "../../features/links/slice";
 
@@ -49,16 +49,10 @@ const CreateLink = ({ onCreateLinkClick }) => {
           username: userData?.username,
         })
       );
-      addLinkAPIError("");
       onCreateLinkClick();
+      setAddLinkAPIError("");
     }
   };
-
-  useEffect(() => {
-    if (addLinkStatus === "rejected") {
-      setAddLinkAPIError(addLinkError);
-    }
-  }, [addLinkStatus]);
 
   return (
     <>
