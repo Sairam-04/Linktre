@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../../assets/Logo.png";
 import smallLogo from "../../assets/Logo-small.png";
-import { Link } from "react-router-dom";
-import { getUser } from "../../utils/localStorage";
+import { Link, useNavigate } from "react-router-dom";
+import { getUser, removeUser } from "../../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../features/user/slice";
 import Switch from "./SwitchTheme";
-import Classic from "../../assets/Classic.svg"
+import Classic from "../../assets/Classic.svg";
 
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Adjust default value
@@ -16,6 +17,11 @@ const Header = () => {
   const userData = useSelector((state) => state.users.fetchUserData.data);
   const status = useSelector((state) => state.users.fetchUserData.status);
   const error_data = useSelector((state) => state.users.fetchUserData.error);
+
+  const logout = () =>{
+    removeUser();
+    navigate("/home");
+  }
 
   useEffect(() => {
     if (token) {
@@ -39,11 +45,7 @@ const Header = () => {
     <div className="header w-full h-[9vh] flex justify-between items-center backdrop-blur-lg bg-white/10 top-0 sticky px-4 py-1">
       <div className="logo w-1/2 h-full flex items-center">
         <Link to="/" className="flex gap-3 items-center">
-          <img
-            src={Classic}
-            alt=""
-            className="w-[40px] block cursor-pointer"
-          />
+          <img src={Classic} alt="" className="w-[40px] block cursor-pointer" />
           <div className="text-xl font-medium">ConnectVerse</div>
         </Link>
       </div>
@@ -91,9 +93,16 @@ const Header = () => {
         ) : (
           <>
             {status === "idle" ? (
-              <div className="w-[35px] h-[35px] rounded-full bg-white text-black flex justify-center items-center text-3xl">{userData.username[0]}</div>
+              <div className="flex gap-3 items-center">
+                <div className="w-[35px] h-[35px] rounded-full bg-white text-black flex justify-center items-center text-3xl">
+                  {userData.username[0]}
+                </div>
+                <div className="flex items-center cursor-pointer" onClick={()=>logout()}>
+                  <i className="bi bi-box-arrow-right text-xl"></i>
+                </div>
+              </div>
             ) : (
-              <div>dkfmdkf</div>
+              <div>None</div>
             )}
           </>
         )}

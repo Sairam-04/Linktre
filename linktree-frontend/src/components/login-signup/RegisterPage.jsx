@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "../../assets/SignUpImg.png";
-import Logo from "../../assets/Logo.png";
+import Classic from "../../assets/Classic.svg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../features/user/slice";
@@ -69,9 +69,14 @@ const RegisterPage = () => {
     <div className="w-full h-full flex">
       <div className="w-full sm:w-1/2 flex flex-col gap-10 py-10 px-5">
         <div className="logo w-[180px] sm:w-[200px] md:w-[250px]">
-          <Link to="/">
-            <img src={Logo} alt="Logo" className="w-full" />
-          </Link>
+        <Link to="/" className="flex gap-3 items-center">
+          <img
+            src={Classic}
+            alt=""
+            className="w-[40px] block cursor-pointer"
+          />
+          <div className="text-xl font-medium">ConnectVerse</div>
+        </Link>
         </div>
         <div className="heading text-4xl flex justify-center">
           Join ConnectVerse
