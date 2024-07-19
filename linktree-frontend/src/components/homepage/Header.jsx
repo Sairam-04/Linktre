@@ -6,6 +6,7 @@ import { getUser } from "../../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../features/user/slice";
 import Switch from "./SwitchTheme";
+import Classic from "../../assets/Classic.svg"
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -37,19 +38,13 @@ const Header = () => {
   return (
     <div className="header w-full h-[9vh] flex justify-between items-center backdrop-blur-lg bg-white/10 top-0 sticky px-4 py-1">
       <div className="logo w-1/2 h-full flex items-center">
-        <Link to="/">
+        <Link to="/" className="flex gap-3 items-center">
           <img
-            src={Logo}
+            src={Classic}
             alt=""
-            className="w-[250px] hidden sm:block cursor-pointer"
+            className="w-[40px] block cursor-pointer"
           />
-        </Link>
-        <Link to="/">
-          <img
-            src={smallLogo}
-            alt=""
-            className="w-[10vw] block sm:hidden cursor-pointer"
-          />
+          <div className="text-xl font-medium">ConnectVerse</div>
         </Link>
       </div>
       <ul className="navmenu w-1/2 sm:flex md:text-lg gap-10 justify-end hidden text-md">
