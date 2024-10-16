@@ -46,6 +46,7 @@ function App() {
           ) : (
             <Route index element={<LinksPage />}></Route>
           )}
+          <Route path="/home" element={<HomepageContent />}></Route>
           <Route path="/features" element={<FeaturesPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/faq" element={<FAQPage />}></Route>
